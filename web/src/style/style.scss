@@ -1,0 +1,166 @@
+//reset
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  font-size: 13px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  line-height: 1.2em;
+  background: #f1f1f1;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #999999;
+}
+
+
+$colors: (
+        primary:#db9e3f,
+        'white':#fff,
+        'black':#000,
+        'dark':#222222,
+        'grey':#999,
+        'grey-1':#666,
+        'light':#f9f9f9,
+        'dark-1':#333
+);
+
+@each $colorKey, $color in $colors {
+  .text-#{$colorKey} {
+    color: $color;
+  }
+  .bg-#{$colorKey} {
+    background: $color;
+  }
+}
+
+//text
+@each $var in (left, center, right) {
+  .text-#{$var} {
+    text-align: $var;
+  }
+}
+
+
+//font size
+$font-base-size:1rem;
+$font-sizes: (
+        xxs:0.6154, //8px
+        xs:0.7692, //10px
+        sm:0.9231, //12px
+        md:1, //13px
+        lg:1.076, //14px
+        xl:1.2 //16px
+);
+
+@each $sizeKey, $sizeVal in $font-sizes {
+  .fs-#{$sizeKey} {
+    font-size: $sizeVal*$font-base-size;
+  }
+}
+
+
+//flex
+//水平flex
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+$flex-jc: (
+        start:flex-start,
+        end:flex-end,
+        center:center,
+        between:space-between,
+        around:space-around,
+);
+@each $jcKey, $jc in $flex-jc {
+  .jc-#{$jcKey} {
+    justify-content: $jc;
+  }
+}
+
+//垂直flex
+$flex-ai: (
+        start:flex-start,
+        end:flex-end,
+        center:center,
+        stretch:stretch,
+);
+@each $aiKey, $ai in $flex-ai {
+  .ai-#{$aiKey} {
+    align-content: $ai;
+  }
+}
+
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+//spacing
+$spacing-types: (m:margin, p:padding);
+$spacing-directions: (t:top, r:right, b: bottom, l:left);
+$spacing-base-size: 1rem;
+$spacing-sizes: (
+        0:0,
+        1:0.25,
+        2:0.5,
+        3:1,
+        4:1.5,
+        5:3
+);
+
+//margin,padding
+@each $key,$var in $spacing-types{
+  @each $sizeskey,$sizesvar in $spacing-sizes{
+    .#{$key}-#{$sizeskey}{
+      #{$var}:$sizesvar*$spacing-base-size;
+    }
+  }
+
+  @each $sizeskey,$sizesvar in $spacing-sizes{
+    .#{$key}x-#{$sizeskey}{
+      #{$var}-left:$sizesvar*$spacing-base-size;
+      #{$var}-right:$sizesvar*$spacing-base-size;
+    }
+
+    .#{$key}y-#{$sizeskey}{
+      #{$var}-top:$sizesvar*$spacing-base-size;
+      #{$var}-bottom:$sizesvar*$spacing-base-size;
+    }
+  }
+
+
+
+    @each $directionkey,$directionvar in $spacing-directions{
+      @each $sizeskey,$sizesvar in $spacing-sizes{
+        .#{$key}#{$directionkey}-#{$sizeskey}{
+          #{$var}-#{$directionvar}:$sizesvar*$spacing-base-size;
+        }
+      }
+    }
+}
+
+.btn{
+  border: none;
+  border-radius: 0.1538rem;
+  font-size:map_get($font-sizes,'sm') *$font-base-size;
+  padding: 0.2rem 0.6rem;
+}
+
+
